@@ -5,12 +5,40 @@
          metadata-complete="false"
          version="6.0">
     <servlet>
-        <servlet-name>QuestionnaireServlet</servlet-name>
-        <servlet-class>by.it_academy.jd2.Mk_jd2_111_25.QuestionnaireServlet</servlet-class>
+        <servlet-name>AddMailServlet</servlet-name>
+        <servlet-class>by.it_academy.jd2.Mk_jd2_111_25.AddMailServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>QuestionnaireServlet</servlet-name>
-        <url-pattern>/questionnaire/</url-pattern>
+        <servlet-name>AddMailServlet</servlet-name>
+        <url-pattern>/mail</url-pattern>
     </servlet-mapping>
-    <display-name>java-Enterprise-DZ3</display-name>
+
+    <servlet>
+        <servlet-name>AddSongServlet</servlet-name>
+        <servlet-class>by.it_academy.jd2.Mk_jd2_111_25.AddSongServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddSongServlet</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteSongServlet</servlet-name>
+        <servlet-class>by.it_academy.jd2.Mk_jd2_111_25.DeleteSongServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteSongServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetSongsServlet</servlet-name>
+        <servlet-class>by.it_academy.jd2.Mk_jd2_111_25.GetSongsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetSongsServlet</servlet-name>
+        <url-pattern>/get</url-pattern>
+    </servlet-mapping>
+
+    <display-name>java-Enterprise-Assessment1</display-name>
 </web-app>

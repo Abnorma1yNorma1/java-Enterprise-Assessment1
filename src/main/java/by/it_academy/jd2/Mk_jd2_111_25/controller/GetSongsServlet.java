@@ -20,7 +20,7 @@ public class GetSongsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final HttpSession session = req.getSession();
+        HttpSession session = req.getSession();
         Writer out = resp.getWriter();
         String mail = (String) session.getAttribute("mail");
         List<Song> list = service.getPlaylist(mail);

@@ -19,21 +19,23 @@ public class PlaylistService implements IPlaylistService {
     }
 
     @Override
-    public void addSong(String mail, Song song) {
+    public boolean addSong(String mail, Song song) {
         if (!storage.getList(mail).contains(song)){
-            storage.addSong(mail, song);
+            return storage.addSong(mail, song);
+        } else {
+            return false;
         }
     }
 
     @Override
-    public void deleteSong(String mail, String songName) {
+    public boolean deleteSong(String mail, String songName) {
         List<Song> list = storage.getList(mail);
         for (Song s: list) {
             if (songName.equals(s.getName())){
-                storage.deleteSong(mail, s);
-                break;
+                return storage.deleteSong(mail, s);
             }
         }
+        return false;
     }
 
     @Override

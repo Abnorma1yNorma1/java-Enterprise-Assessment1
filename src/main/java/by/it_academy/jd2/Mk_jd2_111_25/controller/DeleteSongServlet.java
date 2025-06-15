@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.io.Writer;
 
 @WebServlet("/delete")
 public class DeleteSongServlet extends HttpServlet {
@@ -18,9 +19,15 @@ public class DeleteSongServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final HttpSession session = req.getSession();
+        HttpSession session = req.getSession();
+        Writer out = resp.getWriter();
         String songName = req.getParameter("songName");
         String mail = (String) session.getAttribute("mail");
-        service.deleteSong(mail, songName);
+        if (service.deleteSong(mail, songName)){
+            out.write("song " + songName + " deleted");
+        } else {
+            out.write("song " + songName + " wasn't deleted");
+        }
+
     }
 }

@@ -3,36 +3,51 @@ package by.it_academy.jd2.Mk_jd2_111_25.storage;
 import by.it_academy.jd2.Mk_jd2_111_25.dto.Song;
 import by.it_academy.jd2.Mk_jd2_111_25.storage.api.IPlaylistStorage;
 
-import java.time.Period;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PlaylistStorageRam implements IPlaylistStorage {
 
-private final Map<String, ArrayList<Song>> persons = new HashMap<>();
+private final Map<String, CopyOnWriteArrayList<Song>> playlists = new ConcurrentHashMap<>();
 
 
     @Override
     public void addList(String mail) {
-        persons.put(mail, new ArrayList<>());
+        playlists.put(mail, new CopyOnWriteArrayList<>());
     }
 
     @Override
-    public void addSong(String mail, Song song) {
-        persons.get(mail).add(song);
+    public boolean addSong(String mail, Song song) {
+        if (mail == null || song == null || !playlists.containsKey(mail)){
+            return false;
+        } else {
+            playlists.get(mail).add(song);
+            return true;
+        }
     }
 
     @Override
     public List<Song> getList(String mail) {
-        return persons.get(mail);
+        if (mail == null || !playlists.containsKey(mail) ){
+            return new CopyOnWriteArrayList<>();
+        } else {
+            return playlists.get(mail);
+        }
     }
 
     @Override
-    public void deleteSong(String mail, Song song) {
-        persons.get(mail).remove(song);
+    public boolean deleteSong(String mail, Song song) {
+        if (mail == null || song == null || !playlists.containsKey(mail)){
+            return false;
+        } else {
+            playlists.get(mail).remove(song);
+            return true;
+        }
     }
 
     @Override
     public Set<String> getAllMail() {
-        return persons.keySet();
+        return playlists.keySet();
     }
 }

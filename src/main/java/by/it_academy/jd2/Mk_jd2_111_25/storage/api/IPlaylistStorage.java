@@ -8,10 +8,10 @@ import java.util.Set;
 public interface IPlaylistStorage {
 
     void addList (String mail);
-    void addSong (String mail, Song song);
+    boolean addSong (String mail, Song song);
 
     List<Song> getList(String mail);
 
-    void deleteSong (String mail, Song song);
+    boolean deleteSong (String mail, Song song);
     Set<String> getAllMail ();
 }

@@ -7,8 +7,8 @@ import java.util.List;
 public interface IPlaylistService {
 
     void addMail (String mail);
-    void addSong (String mail, Song song);
-    void deleteSong (String mail, String songName);
+    boolean addSong (String mail, Song song);
+    boolean deleteSong (String mail, String songName);
     List<Song> getPlaylist (String mail);
 
 }

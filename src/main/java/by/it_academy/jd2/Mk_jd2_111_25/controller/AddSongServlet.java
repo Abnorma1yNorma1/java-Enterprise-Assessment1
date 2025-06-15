@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.io.Writer;
 
 @WebServlet("/add")
 public class AddSongServlet extends HttpServlet {
@@ -19,10 +20,15 @@ public class AddSongServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final HttpSession session = req.getSession();
+        HttpSession session = req.getSession();
+        Writer out = resp.getWriter();
         String songName = req.getParameter("songName");
         String mail = (String) session.getAttribute("mail");
         Song song = new Song(songName);
-        service.addSong(mail, song);
+        if (service.addSong(mail, song)){
+            out.write("song " + songName + " added");
+        } else {
+            out.write("song " + songName + " wasn't added");
+        }
     }
 }
